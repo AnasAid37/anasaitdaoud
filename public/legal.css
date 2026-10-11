@@ -1,0 +1,15 @@
+:root{color-scheme:dark}*{box-sizing:border-box}html{font-family:Arial,Helvetica,sans-serif;background:#090a0a;color:#f1eee8;scroll-behavior:smooth}body{margin:0;line-height:1.8}a{color:#e7bf82}a:focus-visible{outline:2px solid #e7bf82;outline-offset:5px}header{padding:32px max(25px,calc((100vw - 1100px)/2));border-bottom:1px solid #31302a}header a{letter-spacing:.25em;font-size:13px;text-decoration:none}main{max-width:850px;margin:90px auto;padding:0 25px 110px}h1{font-size:clamp(38px,7vw,65px);font-weight:450;line-height:1.1;margin:10px 0 40px}h2{font-size:21px;margin:45px 0 10px}p,li{color:#bcb7af}small,.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:#d8af77}aside{border:1px solid #665134;background:#16130e;padding:18px 24px;color:#e1c393}footer{border-top:1px solid #2d2b27;text-align:center;padding:30px;color:#8c8982;font-size:12px}
+/* Theme consistency across static legal/privacy pages */
+header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.legal-theme-toggle{background:transparent;color:#dec08e;border:1px solid #665134;border-radius:30px;padding:10px 15px;font-size:12px;cursor:pointer;white-space:nowrap}
+.legal-theme-toggle:hover{background:rgba(221,184,123,.12)}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="light"] html{color-scheme:light}
+html[data-theme="light"]{background:#f7f4ee;color:#29251e}
+html[data-theme="light"] p,html[data-theme="light"] li{color:#554e43}
+html[data-theme="light"] a,html[data-theme="light"] .eyebrow,html[data-theme="light"] small{color:#825c27}
+html[data-theme="light"] header,html[data-theme="light"] footer{border-color:#d7c9b3}
+html[data-theme="light"] aside{background:#efe7d9;border-color:#c9b28d;color:#4e3820}
+html[data-theme="light"] footer{color:#655d50}
+html[data-theme="light"] .legal-theme-toggle{color:#533d20;border-color:#ccb28c;background:#fffcf6}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column} main{margin-top:55px}header a{font-size:11px;letter-spacing:.13em}}
