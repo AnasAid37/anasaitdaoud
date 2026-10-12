@@ -340,10 +340,10 @@ h1,h2,h3,p { margin-top: 0; }
 @media (max-width: 700px) {
   .section { padding: 90px 0; }
   .hero { height: 840px; min-height: min(840px,100svh); }
-  .hero-visual { left: 12%; top: 8%; width: 106%; height: 72%; opacity: .78; }
+  .hero-visual { left: 30%; top: 6%; width: 106%; height: 80%; opacity: .85; }
   .hero-overlay { background: linear-gradient(0deg, #080809 6%,rgba(8,8,9,.95) 29%,rgba(8,8,9,.35) 70%,rgba(8,8,9,.25)),linear-gradient(90deg,rgba(8,8,9,.6),transparent 80%); }
   .hero-content { align-items: end; }
-  .hero-copy { width: 100%; padding-bottom: 115px; }
+  .hero-copy { width: 100%; padding-bottom: 300px; }
   .hero-kicker { font-size: 9px; margin-bottom: 22px; letter-spacing: .16em; flex-wrap: wrap; }
   .hero h1 { font-size: clamp(43px,10vw,67px); }
   .hero-description { margin: 23px 0 28px; font-size: 13px; max-width: 430px; }
@@ -391,9 +391,9 @@ h1,h2,h3,p { margin-top: 0; }
   .brand { gap: 15px; }
   .site-header__inner { gap: 10px; }
   .hero { height: 800px; min-height: 780px; }
-  .hero-visual { left: -9%; width: 140%; height: 65%; top: 6%; }
+  .hero-visual { left: 5%; width: 140%; height: 72%; top: 5%; }
   .hero h1 { font-size: clamp(40px,10.3vw,49px); letter-spacing: -.06em; }
-  .hero-copy { padding-bottom: 117px; }
+  .hero-copy { padding-bottom: 300px; }
   .hero-description { font-size: 12px; line-height: 1.9; }
   .hero-cta { align-items: start; }
   .hero-cta .button { font-size: 11px; gap: 9px; padding: 0 17px; min-height: 47px; }

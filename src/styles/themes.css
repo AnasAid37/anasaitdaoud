@@ -164,27 +164,13 @@ body { background: var(--surface-canvas); }
   opacity: 1;
   transform: none;
 }
-:root[data-theme="light"] .hero-visual {
-  left: 29%;
-  top: 5%;
-  width: 65%;
-  height: 103%;
-  opacity: 1;
-  -webkit-mask-image: none;
-  mask-image: none;
-  filter: none;
-}
+
 :root[data-theme="light"] .hero-portrait {
   object-position: center 35%;
   opacity: 1;
   filter: none;
 }
-:root[data-theme="light"] .hero-overlay {
-  display: block;
-  background:
-    linear-gradient(90deg, #080809 0%, rgba(8,8,9,.95) 21%, rgba(8,8,9,.58) 36%, rgba(8,8,9,.09) 54%, rgba(8,8,9,.06) 80%, #080809 100%),
-    linear-gradient(0deg, rgba(8,8,9,.78), transparent 21%, transparent 86%, rgba(8,8,9,.4) 100%);
-}
+
 :root[data-theme="light"] .hero-copy { filter: none; }
 :root[data-theme="light"] .hero-kicker { color: #cfa562; }
 :root[data-theme="light"] .hero-kicker-divider { background: #977849; }
@@ -359,32 +345,4 @@ body { background: var(--surface-canvas); }
 }
 @media (prefers-reduced-motion: reduce) {
   .project-card:hover .project-shot__browser, .theme-toggle:hover { transform: none; }
-}
-
-@media (max-width: 950px) {
-  :root[data-theme="light"] .hero-visual { left: 30%; width: 75%; }
-}
-
-@media (max-width: 700px) {
-  :root[data-theme="light"] .hero-visual {
-    left: 12%;
-    top: 8%;
-    width: 106%;
-    height: 72%;
-    opacity: .78;
-  }
-  :root[data-theme="light"] .hero-overlay {
-    background:
-      linear-gradient(0deg, #080809 6%, rgba(8,8,9,.95) 29%, rgba(8,8,9,.35) 70%, rgba(8,8,9,.25)),
-      linear-gradient(90deg, rgba(8,8,9,.6), transparent 80%);
-  }
-}
-
-@media (max-width: 490px) {
-  :root[data-theme="light"] .hero-visual {
-    left: -9%;
-    width: 140%;
-    height: 65%;
-    top: 6%;
-  }
 }
