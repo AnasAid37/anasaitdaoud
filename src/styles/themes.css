@@ -360,3 +360,31 @@ body { background: var(--surface-canvas); }
 @media (prefers-reduced-motion: reduce) {
   .project-card:hover .project-shot__browser, .theme-toggle:hover { transform: none; }
 }
+
+@media (max-width: 950px) {
+  :root[data-theme="light"] .hero-visual { left: 30%; width: 75%; }
+}
+
+@media (max-width: 700px) {
+  :root[data-theme="light"] .hero-visual {
+    left: 12%;
+    top: 8%;
+    width: 106%;
+    height: 72%;
+    opacity: .78;
+  }
+  :root[data-theme="light"] .hero-overlay {
+    background:
+      linear-gradient(0deg, #080809 6%, rgba(8,8,9,.95) 29%, rgba(8,8,9,.35) 70%, rgba(8,8,9,.25)),
+      linear-gradient(90deg, rgba(8,8,9,.6), transparent 80%);
+  }
+}
+
+@media (max-width: 490px) {
+  :root[data-theme="light"] .hero-visual {
+    left: -9%;
+    width: 140%;
+    height: 65%;
+    top: 6%;
+  }
+}
