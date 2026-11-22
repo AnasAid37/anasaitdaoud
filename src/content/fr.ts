@@ -18,7 +18,7 @@ export const cases = [
     description: 'Conception, développement et mise en production d’un logiciel pour centraliser les stocks, les fournisseurs, les crédits clients et le suivi d’activité. Interface responsive, multi-utilisateurs et multilingue.',
     tags: ['SaaS', 'Gestion commerciale', 'Développement full stack'],
     href: 'https://stockpro.ma',
-    image: '/images/stockpro.webp',
+    image: 'images/stockpro.webp',
     domain: 'stockpro.ma',
   },
   {
@@ -30,7 +30,7 @@ export const cases = [
     description: 'Réalisation d’un site web pour une entreprise spécialisée dans la climatisation, dans le cadre de mon activité freelance.',
     tags: ['Site entreprise', 'Web design', 'Développement web'],
     href: 'https://toolkit-hub.com',
-    image: '/images/toolkit-hub.webp',
+    image: 'images/toolkit-hub.webp',
     domain: 'toolkit-hub.com',
   },
   {
@@ -42,7 +42,7 @@ export const cases = [
     description: 'Marketplace organisée par catégories et recherche ciblée, avec authentification selon les rôles et tableaux de bord adaptés à chaque profil.',
     tags: ['Marketplace', 'Authentification', 'Tableaux de bord'],
     href: 'https://myprestataire.com',
-    image: '/images/myprestataire.webp',
+    image: 'images/myprestataire.webp',
     domain: 'myprestataire.com',
   },
   {
@@ -54,7 +54,7 @@ export const cases = [
     description: 'Développement en cours d’un SaaS multi-tenant visant à isoler les données par salle et à gérer rôles, abonnements, facturation et check-in par QR code. Fonctionnalités en cours de réalisation.',
     tags: ['Multi-tenant', 'SaaS', 'Projet en cours'],
     href: '',
-    image: '/images/gymflow.webp',
+    image: 'images/gymflow.webp',
     domain: 'GymFlow · Projet personnel',
   },
   {
@@ -66,7 +66,7 @@ export const cases = [
     description: 'Développement d’un MVP Laravel pour présenter les chambres d’un riad, calculer les tarifs et recevoir des demandes de réservation sans compte client. Back-office privé pour gérer chambres, demandes et contenus. Les réservations sont confirmées manuellement ; aucun paiement en ligne n’est intégré dans le MVP.',
     tags: ['Laravel 12', 'Blade / MySQL', 'Réservation directe', 'Back-office'],
     href: 'https://mediumspringgreen-aardvark-475557.hostingersite.com/',
-    image: '/images/riad-lokman.webp',
+    image: 'images/riad-lokman.webp',
     domain: 'Riad Lokman · Démonstration web',
   },
 ] as const

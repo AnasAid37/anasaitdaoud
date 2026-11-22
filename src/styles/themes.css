@@ -153,46 +153,6 @@ body { background: var(--surface-canvas); }
   box-shadow: 0 10px 36px rgba(0,0,0,.18);
 }
 
-/* LIGHT HERO — intentionally remains cinematic.
-   Light mode changes the sections below, not the hero composition itself. */
-:root[data-theme="light"] .hero { background: #080809; }
-:root[data-theme="light"] .hero-glow {
-  inset: 5% -10% 0 34%;
-  z-index: -1;
-  background: radial-gradient(ellipse at 72% 44%, rgba(176,110,47,.18), transparent 53%);
-  filter: none;
-  opacity: 1;
-  transform: none;
-}
-
-:root[data-theme="light"] .hero-portrait {
-  object-position: center 35%;
-  opacity: 1;
-  filter: none;
-}
-
-:root[data-theme="light"] .hero-copy { filter: none; }
-:root[data-theme="light"] .hero-kicker { color: #cfa562; }
-:root[data-theme="light"] .hero-kicker-divider { background: #977849; }
-:root[data-theme="light"] .hero h1 { color: #f1eee9; }
-:root[data-theme="light"] .hero h1 span { color: #e7bf82; }
-:root[data-theme="light"] .hero-description { color: #b2ada7; }
-:root[data-theme="light"] .hero .button-outline {
-  border-color: #b49261;
-  color: #f7f3ec;
-  background: rgba(14,14,13,.47);
-}
-:root[data-theme="light"] .hero .button-outline:hover { background: rgba(225,184,121,.12); }
-:root[data-theme="light"] .hero-specialties { color: #6c6c6b; }
-:root[data-theme="light"] .hero-specialties span { background: #6a6661; }
-:root[data-theme="light"] .hero-scroll { color: #f1eee9; left: 50%; }
-:root[data-theme="light"] .mouse-symbol { border-color: #d1d1cf; }
-:root[data-theme="light"] .mouse-symbol span { background: #d1d1cf; }
-:root[data-theme="light"] .hero-social { color: #f1eee9; border-left-color: rgba(236,236,236,.28); }
-:root[data-theme="light"] .hero-index { color: #a6a3a0; }
-:root[data-theme="light"] .hero-index .hero-index-active { color: #fff; }
-:root[data-theme="light"] .hero-location { color: #999086; }
-
 /* Selected work on softly differentiated paper with product captures left untouched. */
 :root[data-theme="light"] .projects-section { background: #f8f6f0; border-top: 1px solid #e7dfd2; }
 :root[data-theme="light"] .project-card__visual { background: #eae4d9; border-color: #d9ccba; }
@@ -292,13 +252,6 @@ body { background: var(--surface-canvas); }
 :root[data-theme="light"] .assistant-feedback.is-error { color: #873929; background: #ffede4; }
 
 /* Contact and footer */
-:root[data-theme="light"] .contact-section { background: #fdfaf5; }
-:root[data-theme="light"] .contact-ambient { background: radial-gradient(ellipse at 50% 57%,rgba(198,159,107,.14),transparent 65%); }
-:root[data-theme="light"] .contact-top h2 { color: #2c2821; }
-:root[data-theme="light"] .contact-top p { color: #61594e; }
-:root[data-theme="light"] .contact-links :is(a,.email-trigger--contact) { color: #89622b; }
-:root[data-theme="light"] .contact-links :is(a,.email-trigger--contact) strong { color: #332d25; }
-:root[data-theme="light"] .contact-links :is(a,.email-trigger--contact) small { color: #686052; }
 :root[data-theme="light"] .footer { background: #eee9df; }
 :root[data-theme="light"] .footer-main p { color: #60584d; }
 :root[data-theme="light"] .footer-main nav a { color: #494136; }

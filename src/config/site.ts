@@ -12,8 +12,8 @@ export const siteConfig = {
   email: 'anasaitdd37@gmail.com',
   whatsapp: '212605816821', // Chiffres uniquement, indicatif international compris.
   socials: {
-    linkedin: '', // TODO: ex. https://www.linkedin.com/in/identifiant/ ; vide = masqué
-    github: '', // TODO: ex. https://github.com/identifiant ; vide = masqué
+    linkedin: 'https://www.linkedin.com/in/anas-ait-daoud-02128a29b', // TODO: ex. https://www.linkedin.com/in/identifiant/ ; vide = masqué
+    github: 'https://github.com/AnasAid37', // TODO: ex. https://github.com/identifiant ; vide = masqué
   },
 } as const
 

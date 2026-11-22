@@ -25,7 +25,7 @@ npm run build         # TypeScript + build Vite optimisé -> dist/
 npm run preview       # Prévisualisation du build
 ```
 
-**Remarque sur l’environnement de génération :** le registre npm n'était pas accessible depuis l'environnement de construction. Le dossier `node_modules` et le lockfile n'ont pas pu être créés, et la compilation complète Vite n'a pas pu y être effectuée. Le code source est livré intégralement ; exécutez les commandes ci-dessus dans un environnement connecté. Des tests locaux sans dépendances supplémentaires ont été effectués sur la logique de l’assistant. Aucun build non réalisé n’est annoncé comme validé.
+**Build vérifié :** `npm install`, `npm run build` et les quatre suites de tests passent (voir `QA_RESULTS.md`).
 
 ## 2. Modifier les informations publiques
 
@@ -42,9 +42,58 @@ Fichier unique : **`src/config/site.ts`**.
 
 Le téléphone `+212 605 816 821` et l’e-mail `anasaitdd37@gmail.com` proviennent du CV fourni. **Ils ne sont pas inventés.** LinkedIn/GitHub sont volontairement vides et masqués jusqu’à renseignement des vraies URL. Pour modifier les textes éditoriaux, consultez **`src/content/fr.ts`** ; les chaînes de l’assistant sont dans **`src/components/ProjectAssistant.tsx`** et peuvent être externalisées pour ajouter une autre langue.
 
-## 3. Portrait fixe et véritables captures des projets
+## 3. Expérience cinématique (hero, transitions, contact)
 
-Le visuel de la première section utilise **`public/images/cinematic-portrait.webp`** (portrait stylisé déjà fourni). Il est **fixe** : aucune vidéo ni séquence d'images n'est chargée ou nécessaire.
+Le site s'ouvre comme un générique de film, puis le scroll pilote la caméra jusqu'aux sections du portfolio.
+
+| Scène | Ce qui se passe | Fichier |
+| --- | --- | --- |
+| 01 — Obscurité | Écran noir en format cinéma (bandes noires), une ligne dorée se dessine à l'emplacement de la lampe murale | `src/components/Hero.tsx` |
+| 02 — Révélation | L'obscurité se retire depuis la lampe, le personnage émerge de l'ombre, brouillard, poussière et lumière s'allument | `Hero.tsx`, `styles/cinematic.css` |
+| 03 — Introduction | Nom lettre par lettre (h1 lisible par les moteurs et lecteurs d'écran), accroche, description, boutons ; puis zoom caméra, travelling latéral, parallaxe et citations au scroll | `Hero.tsx` |
+| 04 — Le parcours | Carton de transition puis Projets, Services, À propos, Compétences, Assistant ; titres révélés ligne par ligne | `components/cinematic/SceneSlate.tsx`, `SectionHeading.tsx` |
+| 05 — La connexion | Carton de transition puis Contact sur le portrait rétroéclairé existant, avec zoom lent et lumière dorée | `components/Contact.tsx` |
+
+### Ce qui est réel, ce qui est programmé (transparence)
+
+- **Aucune vidéo n'a été générée.** Le service de génération vidéo connecté (Higgsfield) a été testé : le solde du compte (4,36 crédits, plan gratuit) était inférieur au coût du clip le moins cher (7,5 crédits). Tout le mouvement est donc **programmatique**.
+- **Personnage** : découpe au pixel près du portrait fourni (modèle de détourage `isnet-general-use`, via rembg). Le visage et les proportions ne sont **jamais régénérés** ni déformés.
+- **Décor** : la même photo, personnage retiré ; le mur et le sol derrière lui sont reconstitués en recopiant les textures voisines dans l'axe de la perspective (aucun remplissage génératif).
+- **Mouvement de caméra** (zoom avant, travelling, parallaxe entre décor/personnage/brouillard, légère dérive) : Motion + CSS.
+- **Lumière** : halo de lampe qui « respire », faisceau qui balaie la scène, liseré doré qui passe sur le personnage (masqué par sa silhouette).
+- **Atmosphère** : brouillard en deux couches (textures de bruit procédural), poussière en canvas 2D, grain de film.
+- **Mouvement du personnage** : **aucun mouvement humain n'est simulé** (l'ancienne micro-respiration CSS a été retirée). Sans vidéo, le personnage est une image fixe ; seuls la caméra, la lumière et l'atmosphère bougent.
+
+### Animation réelle du personnage (vidéo générée)
+
+Le hero est prêt à jouer un **vrai plan vidéo** de toi (clignements, sourire, regard, geste de la main, respiration) généré par un modèle image-vers-vidéo à partir de ton portrait :
+
+1. Suivre `scripts/hero-video/PROMPT.md` (image de départ exacte, prompt, réglages testés).
+2. `bash scripts/prepare-hero-video.sh ma-video.mp4` → crée `src/assets/hero-video/character-loop.{mp4,webm,webp}` (540×960, sans audio, ≈ 0,5–1,5 Mo).
+3. `npm run build` : le hero remplace automatiquement le personnage fixe par la vidéo.
+
+Intégration : la vidéo est calée au pixel sur le décor (même caméra, même parallaxe, bords fondus), démarre quand le personnage émerge de l'ombre, boucle sans coupure (image de début = image de fin), se met en pause hors écran / onglet caché, n'est pas chargée en mode « mouvement réduit » ni en « économie de données », et revient au personnage fixe en cas d'erreur de lecture. Testé avec un clip de test synthétique (non livré).
+
+État actuel : **aucune vidéo n'est incluse**. La génération Higgsfield a été tentée (Seedance 2.0 Mini, 8 s, 4 crédits) mais refusée : « Requires basic plan or higher » — le plan gratuit ne permet pas de générer, même avec des crédits.
+- **Son** (optionnel, coupé par défaut) : nappe atmosphérique synthétisée en direct avec la Web Audio API, aucun fichier audio. Bouton dans le rail à droite (mobile : en bas à droite).
+
+### Régénérer les couches à partir d'un nouveau portrait
+
+```bash
+pip install "rembg[cpu]" opencv-python-headless pillow numpy
+python scripts/build-cinematic-assets.py chemin/vers/portrait.webp public/cinematic
+```
+
+Le script produit `plate.webp`, `character.webp`, `poster.webp`, `fog-back.webp`, `fog-front.webp` et `layers.json`. Reporter la boîte du personnage de `layers.json` dans `src/config/cinematic.ts` (`character_box`). Les réglages de reconstitution du décor (bord de la colonne, pente du mur) sont propres à la photo actuelle : à vérifier si le cadrage change.
+
+### Accessibilité & performance
+
+- **Intro passable** : bouton « Passer l'intro », ou n'importe quelle touche, molette, geste tactile ou focus clavier. La version complète (≈ 4 s) n'est jouée qu'une fois par session, ensuite une version courte.
+- **Mouvement réduit** (`prefers-reduced-motion`) : image fixe d'origine (`poster.webp`), aucune animation, pas de scroll épinglé, navigation visible immédiatement.
+- **SEO** : le h1 contient le nom et le métier en texte réel ; les lettres animées sont décoratives (`aria-hidden`).
+- **Poids** : couches du hero ≈ 210 Ko (WebP), police d'affichage Cormorant Garamond auto-hébergée (2 graisses, ≈ 45 Ko), aucune requête vers un service externe.
+- Le canvas de poussière se met en pause hors écran et quand l'onglet est caché ; densité de pixels plafonnée.
+- Le hero et la scène Contact restent sombres dans les deux thèmes ; un dégradé fait la transition vers les sections claires.
 
 Les **cinq images** de la rubrique « Projets » sont des captures réelles fournies par le propriétaire, converties en WebP sans ajouter d'interfaces inventées :
 
@@ -106,7 +155,8 @@ Retour arrière, modification à partir du résumé, réinitialisation, erreurs 
 anas-portfolio/
 ├── index.html                   # SEO, OG, métadonnées et montage React
 ├── public/
-│   ├── images/cinematic-portrait.webp # Portrait fixe
+│   ├── cinematic/               # Couches du hero (décor, personnage, poster, brouillard)
+│   ├── images/cinematic-portrait.webp # Portrait rétroéclairé (scène Contact)
 │   ├── images/{stockpro,myprestataire,toolkit-hub,gymflow,riad-lokman}.webp
 │   ├── og-cover.jpg, favicon.svg
 │   ├── legal.css, legal-theme.js
@@ -115,6 +165,7 @@ anas-portfolio/
 ├── src/
 │   ├── main.tsx, App.tsx
 │   ├── config/site.ts           # Configuration unique des coordonnées
+│   ├── config/cinematic.ts      # Chemins et géométrie des couches du hero
 │   ├── hooks/useTheme.ts       # Thème sombre/clair et persistance
 │   ├── content/fr.ts            # Données éditoriales en français
 │   ├── lib/inquiry.ts           # Arbre de décisions & génération de message
@@ -123,6 +174,8 @@ anas-portfolio/
 │   ├── components/              # Sections et éléments réutilisables
 │   └── styles/index.css        # Tailwind + direction artistique sombre
 │   └── styles/themes.css       # Finition UI et thème clair
+│   └── styles/cinematic.css    # Générique, transitions, contact, grain
+├── scripts/build-cinematic-assets.py # Génération des couches depuis le portrait
 ├── tests/flow-check.mjs
 ├── tests/theme-check.mjs
 ├── tests/layout-check.mjs

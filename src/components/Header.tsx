@@ -36,7 +36,7 @@ export default function Header({ theme, onToggleTheme }: { theme: Theme; onToggl
   }, [menuOpen])
 
   return (
-    <header className={`site-header ${active === '#accueil' && !menuOpen ? 'is-over-hero' : ''} ${scrolled || menuOpen ? 'is-scrolled' : ''}`}>
+    <header className={`site-header ${(active === '#accueil' || active === '#contact') && !menuOpen ? 'is-over-hero' : ''} ${scrolled || menuOpen ? 'is-scrolled' : ''}`}>
       <div className="site-header__inner">
         <Brand />
         <nav className="desktop-nav" aria-label="Navigation principale">

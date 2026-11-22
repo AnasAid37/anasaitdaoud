@@ -12,6 +12,7 @@ const app = read('src/App.tsx')
 const header = read('src/components/Header.tsx')
 const hook = read('src/hooks/useTheme.ts')
 const css = read('src/styles/themes.css')
+const cine = read('src/styles/cinematic.css')
 const legalJs = read('public/legal-theme.js')
 let checks = 0
 function check(condition, message) { assert.ok(condition, message); checks++ }
@@ -23,10 +24,13 @@ check(header.includes('Activer le mode clair') && header.includes('Activer le mo
 check(hook.includes('window.localStorage.setItem(STORAGE_KEY, theme)'), 'Preference persisted')
 check(hook.includes("window.addEventListener('storage', onStorage)"), 'Cross-tab synchronization')
 check(read('src/main.tsx').includes("import './styles/themes.css'"), 'Styles imported')
-for (const section of ['.hero ', '.projects-section', '.services-section', '.about-section', '.skills-section', '.assistant-section', '.contact-section', '.footer ', '.email-dialog']) {
+// Hero (scenes 01-03) and contact (scene 05) are deliberately cinematic/dark in both themes.
+check(cine.includes('.cine { position: relative;') && cine.includes('.cine-contact { --gold: #e7bf82;'), 'Hero and contact scenes define their own dark palette')
+check(cine.includes(':root[data-theme="light"] .scene-slate--bridge'), 'Bridge from the dark hero into light sections')
+for (const section of ['.projects-section', '.services-section', '.about-section', '.skills-section', '.assistant-section', '.footer ', '.email-dialog']) {
   check(css.includes(':root[data-theme="light"] ' + section), `Light styling exists for ${section}`)
 }
-check(css.includes('@media (max-width: 700px)'), 'Responsive light hero')
+check(css.includes('@media (max-width: 700px)') && cine.includes('@media (max-width: 760px)'), 'Responsive light theme and cinematic hero')
 check(css.includes('prefers-reduced-motion: reduce'), 'Reduced-motion support')
 for (const page of ['mentions-legales.html', 'confidentialite.html']) {
   check(read('public/'+page).includes('legal-theme.js'), `${page} inherits the preference`)

@@ -16,7 +16,8 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/images/cinematic-portrait.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/cinematic/plate.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/cinematic/character.webp" as="image" type="image/webp" fetchpriority="high" />
     <title>Anas Ait Daoud — Développeur web freelance | Marrakech</title>
     <script>
       // Apply saved preference before rendering to avoid a flash of the wrong theme.
@@ -26,6 +27,8 @@
         document.documentElement.style.colorScheme = theme;
         document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f7f4ee' : '#090a09';
       } catch (_) { document.documentElement.dataset.theme = 'dark'; }
+      // Hide the navigation until the opening title sequence has revealed the scene.
+      if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.cineIntro = 'playing';
     </script>
   </head>
   <body>

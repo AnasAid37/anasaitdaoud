@@ -1,3 +1,5 @@
+import { asset } from '../config/cinematic'
+
 /** Real, user-supplied screenshots — never illustrative mock UI. */
 export default function ProjectScreenshot({src,name,domain,priority=false}:{src:string;name:string;domain:string;priority?:boolean}) {
   return <figure className="project-shot" aria-label={`Capture réelle du projet ${name}`}>
@@ -9,7 +11,7 @@ export default function ProjectScreenshot({src,name,domain,priority=false}:{src:
         <span className="project-shot__browser-mark">↗</span>
       </div>
       <div className="project-shot__viewport">
-        <img className="project-shot__image" src={src} alt={`Capture d’écran réelle de la page d’accueil de ${name}`} loading={priority?'eager':'lazy'} decoding="async" />
+        <img className="project-shot__image" src={asset(src)} alt={`Capture d’écran réelle de la page d’accueil de ${name}`} loading={priority?'eager':'lazy'} decoding="async" />
       </div>
     </div>
     <span className="project-shot__caption">CAPTURE DU PROJET <span aria-hidden="true">↗</span></span>
