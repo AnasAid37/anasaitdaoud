@@ -16,7 +16,8 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/anasaitdaoud/favicon.svg" />
-    <link rel="preload" href="/anasaitdaoud/images/cinematic-portrait.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/anasaitdaoud/cinematic/plate.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/anasaitdaoud/cinematic/character.webp" as="image" type="image/webp" fetchpriority="high" />
     <title>Anas Ait Daoud — Développeur web freelance | Marrakech</title>
     <script>
       // Apply saved preference before rendering to avoid a flash of the wrong theme.
@@ -26,9 +27,11 @@
         document.documentElement.style.colorScheme = theme;
         document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f7f4ee' : '#090a09';
       } catch (_) { document.documentElement.dataset.theme = 'dark'; }
+      // Hide the navigation until the opening title sequence has revealed the scene.
+      if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.cineIntro = 'playing';
     </script>
-    <script type="module" crossorigin src="/anasaitdaoud/assets/index-DW5gmmft.js"></script>
-    <link rel="stylesheet" crossorigin href="/anasaitdaoud/assets/index-V8WnBdP-.css">
+    <script type="module" crossorigin src="/anasaitdaoud/assets/index-qrU5Qiwo.js"></script>
+    <link rel="stylesheet" crossorigin href="/anasaitdaoud/assets/index-BFUujedx.css">
   </head>
   <body>
     <div id="root"></div>
